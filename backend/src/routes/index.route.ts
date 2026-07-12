@@ -5,6 +5,7 @@ import {
   globalErrorHandler,
   notFoundHandler,
 } from "../middleware/global-error.middleware";
+import authRouter from "./auth.route";
 
 const router: Router = Router();
 
@@ -23,6 +24,8 @@ router.get("/health", (req: Request, res: Response) => {
   };
   res.status(200).json(health);
 });
+
+router.use("/api/auth", authRouter);
 
 router.use(notFoundHandler);
 router.use(globalErrorHandler);
