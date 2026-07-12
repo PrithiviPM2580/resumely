@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 import type { Payload } from "../types";
 import { APIError } from "./api-error";
-import type { CookieOptions } from "express";
+import type { CookieOptions, Response } from "express";
 import { ENV } from "../config/env.config";
 
 export const signToken = (
@@ -28,4 +28,9 @@ export const cookieOptions: CookieOptions = {
   sameSite: ENV.NODE_ENV === "production" ? "none" : "lax",
   maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
   path: "/",
+};
+
+export const issueSession = (res: Response, payload: Payload) => {
+  const token = signToken(payload);
+  res.cookie(ENV.COOKIE_NAME, token, cookieOptions);
 };
