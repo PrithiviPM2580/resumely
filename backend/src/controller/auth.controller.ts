@@ -9,7 +9,6 @@ import type {
 } from "../validation/auth.validation";
 import User from "../models/user.model";
 import { cookieOptions, issueSession } from "../utils/jwt";
-import router from "../routes/index.route";
 import { ENV } from "../config/env.config";
 
 export const register = async (
@@ -21,7 +20,7 @@ export const register = async (
 
   const existingUser = await User.findOne({ email });
 
-  if (!existingUser)
+  if (existingUser)
     return next(APIError.Conflict("User with this email already exists"));
 
   const hashedPassword = await User.hashPassword(password);
