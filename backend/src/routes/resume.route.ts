@@ -14,6 +14,7 @@ import {
   getResumeVersions,
 } from "../controller/resume.controller";
 import { requireAuth } from "../middleware/require-auth.middleware";
+import { uploadPdf } from "../middleware/multer.middleware";
 
 const resumeRouter = Router();
 
@@ -21,6 +22,7 @@ resumeRouter
   .route("/")
   .post(
     requireAuth,
+    uploadPdf("file"),
     validateRequest({ body: createResumeSchema }),
     asyncHandler(createResume),
   );

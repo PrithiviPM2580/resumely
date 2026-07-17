@@ -18,7 +18,7 @@ export const createResume = async (
 ) => {
   const { title } = req.body;
 
-  if (!req.file || req.file.mimetype !== "application/pdf") {
+  if (!req.file) {
     return next(APIError.BadRequest("A valid PDF file is required"));
   }
 

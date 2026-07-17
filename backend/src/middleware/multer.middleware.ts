@@ -1,6 +1,7 @@
 import multer from "multer";
 import { APIError } from "../utils/api-error";
 import type { Request, Response } from "express";
+import path from "path";
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
 
@@ -8,9 +9,16 @@ const upload = multer({
   storage: multer.memoryStorage(),
   limits: { fileSize: MAX_FILE_SIZE, files: 1 },
   fileFilter(req, file, callback) {
-    if (file.mimetype !== "application/pdf") {
+    const isPdfMime =
+      file.mimetype === "application/pdf" ||
+      file.mimetype === "application/octet-stream";
+
+    const isPdfExt = path.extname(file.originalname).toLowerCase() === ".pdf";
+
+    if (!isPdfMime || !isPdfExt) {
       return callback(APIError.BadRequest("Only PDF files are allowed"));
     }
+
     callback(null, true);
   },
 });
