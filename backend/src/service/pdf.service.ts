@@ -1,7 +1,7 @@
 import { PDFParse } from "pdf-parse";
 import { APIError } from "../utils/api-error";
 
-async function extractTextFromPdf(buffer: Buffer) {
+export async function extractTextFromPdf(buffer: Buffer) {
   let parser: PDFParse | undefined;
 
   try {
