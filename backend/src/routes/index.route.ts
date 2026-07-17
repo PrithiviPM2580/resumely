@@ -6,6 +6,7 @@ import {
   notFoundHandler,
 } from "../middleware/global-error.middleware";
 import authRouter from "./auth.route";
+import resumeRouter from "./resume.route";
 
 const router: Router = Router();
 
@@ -26,6 +27,7 @@ router.get("/health", (req: Request, res: Response) => {
 });
 
 router.use("/api/auth", authRouter);
+router.use("/api/resumes", resumeRouter);
 
 router.use(notFoundHandler);
 router.use(globalErrorHandler);
