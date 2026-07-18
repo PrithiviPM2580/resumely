@@ -126,14 +126,14 @@ const parsedSectionsSchema = new Schema<ParsedSectionsSchema>(
 );
 
 export interface IResumeVersion extends Document {
-  resumeId: mongoose.Schema.Types.ObjectId;
+  resumeId: mongoose.Types.ObjectId;
   versionNumber: number;
   label: string;
   rawText: string;
   parsedSections: ParsedSectionsSchema;
   sourceType: "upload" | "rewrite";
-  parentVersionId: mongoose.Schema.Types.ObjectId;
-  latestAnalysisId: mongoose.Schema.Types.ObjectId;
+  parentVersionId: mongoose.Types.ObjectId;
+  latestAnalysisId: mongoose.Types.ObjectId;
   createdAt: Date;
   updatedAt: Date;
 }
