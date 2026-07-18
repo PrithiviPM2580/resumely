@@ -21,9 +21,12 @@ export const createResumeSchema = z.object({
 });
 
 export const anayaResumeSchema = z.object({
-  versionId: z.string().refine((id) => Types.ObjectId.isValid(id), {
-    message: "Invalid MongoDB ObjectId",
-  }).optional,
+  versionId: z
+    .string()
+    .refine((id) => Types.ObjectId.isValid(id), {
+      message: "Invalid MongoDB ObjectId",
+    })
+    .optional(),
   targetRole: z.string().min(1),
 });
 

@@ -58,7 +58,7 @@ const responseSchema = {
       maxItems: 5,
       items: {
         type: Type.OBJECT,
-        required: ["issue", "severity", "explanation", "fix"],
+        required: ["title", "severity", "explanation", "fix"],
         properties: {
           title: {
             type: Type.STRING,

@@ -188,7 +188,7 @@ export const analyzeResume = async (
 
   if (!resume) return next(APIError.NotFound("Resume not found"));
 
-  const versionId = req.user!.id || resume.currentVersionId;
+  const versionId = req.body.versionId || resume.currentVersionId;
   if (!versionId)
     return next(APIError.NotFound("No version found for the resume"));
 
@@ -217,7 +217,7 @@ export const analyzeResume = async (
     keywordsPresent: analysis.keywordsPresent,
     keywordsMissing: analysis.keywordsMissing,
     summary: analysis.summary,
-    model,
+    modelName: model,
     promptTokens,
     responseTokens,
   });
