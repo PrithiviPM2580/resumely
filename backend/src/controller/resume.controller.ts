@@ -164,6 +164,7 @@ export const deleteResume = async (
 
   await Promise.all([
     ResumeVersion.deleteMany({ resumeId: resume._id }),
+    Analysis.deleteMany({ resumeId: resume._id }),
     resume.deleteOne(),
   ]);
 
